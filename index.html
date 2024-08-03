@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Date Calculator</h1>
+        <div class="form-group">
+            <label for="date1">Select First Date:</label>
+            <input type="date" id="date1" required>
+        </div>
+        <div class="form-group">
+            <label for="date2">Select Second Date:</label>
+            <input type="date" id="date2" required>
+        </div>
+        <button onclick="calculateDifference()">Calculate Difference</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateDifference() {
+            const date1 = new Date(document.getElementById('date1').value);
+            const date2 = new Date(document.getElementById('date2').value);
+
+            if (isNaN(date1) || isNaN(date2)) {
+                document.getElementById('result').innerText = 'Please select both dates.';
+                return;
+            }
+
+            const timeDifference = Math.abs(date2 - date1);
+            const dayDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+            document.getElementById('result').innerText = `The difference between the dates is ${dayDifference} day(s).`;
+        }
+    </script>
+</body>
+</html>
